@@ -1,0 +1,27 @@
+﻿using EssentialTools.Models.Substract;
+using System.Collections.Generic;
+
+namespace EssentialTools.Models
+{
+    public class ShoppingCart
+    {
+        private IValueCalculator calc;
+
+        public ShoppingCart(IValueCalculator calcParam)
+        {
+            calc = calcParam;
+        }
+
+        public IEnumerable<Product> Products { get; set; }
+
+        public decimal CalculateProductTotal()
+        {
+            return calc.ValueProducts(Products);
+        }
+
+        public decimal CalculateProductWithDiscount()
+        {
+            return calc.ValueProductsWithDiscount(Products);
+        }
+    }
+}
