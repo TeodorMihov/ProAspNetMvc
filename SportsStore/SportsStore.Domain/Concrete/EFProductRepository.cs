@@ -3,8 +3,9 @@
     using Abstract;
     using System.Collections.Generic;
     using Entites;
-    
-    public class EFProductRepository:IProductRepository
+    using System;
+
+    public class EFProductRepository : IProductRepository
     {
         private EFDbContext context = new EFDbContext();
 
@@ -14,6 +15,27 @@
             {
                 return context.Products;
             }
+        }
+
+        public void SaveProduct(Product product)
+        {
+            if (product.ProductID == 0)
+            {
+                context.Products.Add(product);
+            }
+            else
+            {
+                Product dbProduct = context.Products.Find(product.ProductID);
+                if (dbProduct != null)
+                {
+                    dbProduct.Name = product.Name;
+                    dbProduct.Description = product.Description;
+                    dbProduct.Price = product.Price;
+                    dbProduct.Category = product.Category;
+                }
+            }
+
+            context.SaveChanges();
         }
     }
 }

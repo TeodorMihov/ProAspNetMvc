@@ -26,5 +26,18 @@ namespace SportsStore.UI.Controllers
 
             return View(product);
         }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                productRepo.SaveProduct(product);
+                TempData["message"] = string.Format("{0} has been saved", product.Name);
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
     }
 }
