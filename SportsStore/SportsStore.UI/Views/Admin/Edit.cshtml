@@ -1,8 +1,10 @@
 ﻿@model SportsStore.Domain.Entites.Product
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Admin: Edit " + @Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    @HtmlHelper.ClientValidationEnabled = false;
+    @HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
 
 <div class="panel">
@@ -26,6 +28,7 @@
                     {
                         @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
                     }
+                    @Html.ValidationMessage(property.PropertyName)
                 </div>
             }
             @*Easy way*@
