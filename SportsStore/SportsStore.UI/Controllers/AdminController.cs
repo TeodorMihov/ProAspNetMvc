@@ -20,6 +20,11 @@ namespace SportsStore.UI.Controllers
             return View(this.productRepo.Products);
         }
 
+        public ViewResult Create()
+        {
+            return View("Edit", new Product());
+        }
+        
         public ViewResult Edit(int productId)
         {
             var product = productRepo.Products.FirstOrDefault(x => x.ProductID == productId);
@@ -38,6 +43,18 @@ namespace SportsStore.UI.Controllers
             }
 
             return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int productId)
+        {
+            var deletedProduct = productRepo.DeleteProduct(productId);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"Product {deletedProduct.Name} was deleted";
+            }
+
+            return RedirectToAction("index");
         }
     }
 }

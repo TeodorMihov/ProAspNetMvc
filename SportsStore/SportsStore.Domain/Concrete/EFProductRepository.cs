@@ -17,6 +17,15 @@
             }
         }
 
+        public Product DeleteProduct(int productId)
+        {
+            var product = context.Products.Find(productId);
+
+            context.Products.Remove(product);
+
+            return product;
+        }
+
         public void SaveProduct(Product product)
         {
             if (product.ProductID == 0)
