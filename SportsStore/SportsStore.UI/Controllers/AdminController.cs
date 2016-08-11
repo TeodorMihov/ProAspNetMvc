@@ -6,6 +6,7 @@ using SportsStore.Domain.Entites;
 
 namespace SportsStore.UI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository productRepo;

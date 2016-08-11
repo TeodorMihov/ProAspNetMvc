@@ -27,7 +27,7 @@ namespace SportsStore.Tests
             AdminController target = new AdminController(mock.Object);
             //TODO: fixed. In book has a compilation error
             // Action
-            Product[] result = ((IEnumerable<Product>)target.Index()).ToArray();
+            Product[] result = ((IEnumerable<Product>)(target.Index() as ViewResult).Model).ToArray();
             // Assert
             Assert.AreEqual(result.Length, 3);
             Assert.AreEqual("P1", result[0].Name);
