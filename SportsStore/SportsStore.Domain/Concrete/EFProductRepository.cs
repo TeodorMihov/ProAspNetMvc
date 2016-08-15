@@ -41,6 +41,8 @@
                     dbProduct.Description = product.Description;
                     dbProduct.Price = product.Price;
                     dbProduct.Category = product.Category;
+                    dbProduct.ImageData = product.ImageData;
+                    dbProduct.ImageMimeType = product.ImageMimeType;
                 }
             }
 
